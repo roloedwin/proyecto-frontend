@@ -29,3 +29,4 @@
 /home/adrian/Escritorio/TallerMecanicoMVC/TallerMecanico/obj/Debug/net8.0/TallerMecanico.pdb
 /home/adrian/Escritorio/TallerMecanicoMVC/TallerMecanico/obj/Debug/net8.0/TallerMecanico.genruntimeconfig.cache
 /home/adrian/Escritorio/TallerMecanicoMVC/TallerMecanico/obj/Debug/net8.0/ref/TallerMecanico.dll
+/home/adrian/Escritorio/TallerMecanicoMVC/TallerMecanico/obj/Debug/net8.0/TallerMecanico.sourcelink.json

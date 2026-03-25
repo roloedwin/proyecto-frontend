@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TallerMecanico")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2203f41547399721dfacb0f21fa70402571669c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("TallerMecanico")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TallerMecanico")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

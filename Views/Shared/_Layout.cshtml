@@ -7,66 +7,36 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TallerMecanico.styles.css" asp-append-version="true" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TallerMecanico</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+<body class="bg-gray-100">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Inicio</a>
-                        </li>
+    <div class="flex">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Clientes" asp-action="Index">Clientes</a>
-                        </li>
+        <aside class="w-64 bg-gray-900 text-white min-h-screen p-5">
+            <h2 class="text-2xl font-bold mb-6">Taller Mecanico Senora Burgos</h2>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Vehiculos" asp-action="Index">Vehículos</a>
-                        </li>
+            <ul class="space-y-3">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Servicios" asp-action="Index">Servicios</a>
-                        </li>
+                <li><a asp-controller="Home" asp-action="Index" class="block p-2 hover:bg-gray-700 rounded">Inicio</a></li>
+                <li><a asp-controller="Clientes" asp-action="Index" class="block p-2 hover:bg-gray-700 rounded">Clientes</a></li>
+                <li><a asp-controller="Vehiculos" asp-action="Index" class="block p-2 hover:bg-gray-700 rounded">Vehículos</a></li>
+                <li><a asp-controller="Servicios" asp-action="Index" class="block p-2 hover:bg-gray-700 rounded">Servicios</a></li>
+                <li><a asp-controller="Ordenes" asp-action="Index" class="block p-2 hover:bg-gray-700 rounded">Órdenes</a></li>
+                <li><a asp-controller="Facturacion" asp-action="Index" class="block p-2 hover:bg-gray-700 rounded">Facturación</a></li>
+                <li><a asp-controller="Repuestos" asp-action="Index" class="block p-2 hover:bg-gray-700 rounded">Repuestos</a></li>
+                <li><a asp-controller="Empleados" asp-action="Index" class="block p-2 hover:bg-gray-700 rounded">Empleados</a></li>
+                <li><a asp-controller="Pagos" asp-action="Index" class="block p-2 hover:bg-gray-700 rounded">Pagos</a></li>
+                <li><a asp-controller="Reportes" asp-action="Index" class="block p-2 hover:bg-gray-700 rounded">Reportes</a></li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Ordenes" asp-action="Index">Órdenes</a>
-                        </li>
+            </ul>
+        </aside>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Facturacion" asp-action="Index">Facturación</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Reportes" asp-action="Index">Reportes</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+        <main class="flex-1 p-6">
             @RenderBody()
         </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - TallerMecanico - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    </div>
 </body>
 </html>
