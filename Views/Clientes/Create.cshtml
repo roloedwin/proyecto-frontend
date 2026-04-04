@@ -1,0 +1,31 @@
+@model TallerMecanico.Models.Cliente
+
+<h1 class="text-2xl font-bold mb-4">Nuevo Cliente</h1>
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="All" class="text-red-500 mb-3"></div>
+
+    <div class="mb-3">
+        <label>Nombre</label>
+        <input asp-for="Nombre" class="border p-2 w-full" />
+        <span asp-validation-for="Nombre" class="text-red-500"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Teléfono</label>
+        <input asp-for="Telefono" class="border p-2 w-full" />
+        <span asp-validation-for="Telefono" class="text-red-500"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="Email" class="border p-2 w-full" />
+        <span asp-validation-for="Email" class="text-red-500"></span>
+    </div>
+
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+        Guardar
+    </button>
+
+</form>

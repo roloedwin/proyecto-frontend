@@ -1,0 +1,140 @@
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - TallerMecanico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="min-h-screen overflow-hidden bg-slate-950 text-white">
+    <div class="relative min-h-screen">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.22),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(249,115,22,0.22),_transparent_30%),linear-gradient(135deg,_#020617_0%,_#0f172a_50%,_#111827_100%)]"></div>
+
+        <div class="relative grid min-h-screen lg:grid-cols-[1.15fr_0.85fr]">
+            <section class="hidden flex-col justify-between p-10 lg:flex">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.45em] text-cyan-300">TALLER MECANICO DON BURGOS</p>
+                    <h1 class="mt-6 max-w-xl text-6xl font-black leading-[0.95]">Servicios automotrices disponibles </h1>
+                    <p class="mt-6 max-w-lg text-base text-slate-300">
+                        Acceso a una variedad de servicios para todo tipo de motorizados.
+                    </p>
+                </div>
+
+                <div class="grid max-w-xl grid-cols-3 gap-4">
+                    <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+                        <p class="text-xs uppercase tracking-[0.3em] text-slate-400">clientes</p>
+                        <p class="mt-3 text-3xl font-black">CRM</p>
+                    </div>
+                    <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+                        <p class="text-xs uppercase tracking-[0.3em] text-slate-400">ordenes</p>
+                        <p class="mt-3 text-3xl font-black">OT</p>
+                    </div>
+                    <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+                        <p class="text-xs uppercase tracking-[0.3em] text-slate-400">pagos</p>
+                        <p class="mt-3 text-3xl font-black">Caja</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="flex items-center justify-center p-6 md:p-10">
+                <div class="w-full max-w-md rounded-[2rem] border border-white/10 bg-white/10 p-8 shadow-2xl backdrop-blur-xl">
+                    <div class="mb-8">
+                        <p class="text-xs uppercase tracking-[0.35em] text-cyan-300">acceso seguro</p>
+                        <h2 class="mt-3 text-4xl font-black text-white">Iniciar sesion</h2>
+                        <p class="mt-3 text-sm text-slate-300">Ingresa con tu usuario del sistema para empezar</p>
+                    </div>
+
+                    <form id="loginForm" class="space-y-5">
+                        <div>
+                            <label for="username" class="mb-2 block text-sm font-semibold text-slate-200">Usuario</label>
+                            <input id="username"
+                                   name="username"
+                                   type="text"
+                                   autocomplete="username"
+                                   required
+                                   class="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white outline-none transition focus:border-cyan-300 focus:ring-2 focus:ring-cyan-400/20" />
+                        </div>
+
+                        <div>
+                            <label for="password" class="mb-2 block text-sm font-semibold text-slate-200">Contrasena</label>
+                            <input id="password"
+                                   name="password"
+                                   type="password"
+                                   autocomplete="current-password"
+                                   required
+                                   class="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white outline-none transition focus:border-orange-300 focus:ring-2 focus:ring-orange-400/20" />
+                        </div>
+
+                        <button type="submit"
+                                class="w-full rounded-2xl bg-gradient-to-r from-cyan-400 to-orange-400 px-4 py-3 text-sm font-black text-slate-950 transition hover:scale-[1.01]">
+                            Entrar al sistema
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Campos requeridos',
+                    text: 'Debes completar usuario y contrasena.'
+                });
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'No fue posible iniciar sesion.');
+                }
+
+                localStorage.setItem('auth_token', data.token);
+                localStorage.setItem('auth_username', data.username);
+                localStorage.setItem('auth_rol', data.rol);
+
+                await Swal.fire({
+                    icon: 'success',
+                    title: 'Bienvenido',
+                    text: 'Autenticacion completada correctamente.',
+                    timer: 1400,
+                    showConfirmButton: false
+                });
+
+                window.location.href = data.redirectUrl || '/';
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Acceso denegado',
+                    text: error.message || 'Credenciales invalidas.'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+@model TallerMecanico.Models.Vehiculo
+
+<h1 class="text-2xl font-bold mb-4">Nuevo Vehículo</h1>
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="All" class="text-red-500 mb-3"></div>
+
+    <div class="mb-3">
+        <label>Marca</label>
+        <input asp-for="Marca" class="border p-2 w-full" />
+        <span asp-validation-for="Marca" class="text-red-500"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Modelo</label>
+        <input asp-for="Modelo" class="border p-2 w-full" />
+        <span asp-validation-for="Modelo" class="text-red-500"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Placa</label>
+        <input asp-for="Placa" class="border p-2 w-full" />
+        <span asp-validation-for="Placa" class="text-red-500"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Cliente</label>
+        <select asp-for="ClienteId" asp-items="ViewBag.Clientes"
+                class="border p-2 w-full">
+            <option value="">-- Seleccione Cliente --</option>
+        </select>
+        <span asp-validation-for="ClienteId" class="text-red-500"></span>
+    </div>
+
+    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">
+        Guardar
+    </button>
+
+</form>

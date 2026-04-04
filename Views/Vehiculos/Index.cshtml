@@ -1,15 +1,44 @@
-<h1 class="text-3xl font-bold mb-4">Vehiculos</h1>
+@model List<TallerMecanico.Models.Vehiculo>
 
-<div class="bg-white p-5 rounded shadow">
-    <p>Aquí podrás registrar, editar y eliminar Vehiculos.</p>
-</div>
+<h1 class="text-3xl font-bold mb-4">Vehículos</h1>
 
-<button onclick="nuevoVehiculo()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
-    Nuevo Cliente
-</button>
+<a asp-action="Create" class="bg-green-500 text-white px-4 py-2 rounded">
+    Nuevo Vehículo
+</a>
 
-<script>
-function nuevoVehiculo() {
-    Swal.fire('Aquí irá el formulario de vehiculos');
-}
-</script>
+<table class="w-full mt-4 bg-white shadow rounded">
+    <thead class="bg-gray-200">
+        <tr>
+            <th class="p-2">Marca</th>
+            <th class="p-2">Modelo</th>
+            <th class="p-2">Placa</th>
+            <th class="p-2">Cliente</th>
+            <th class="p-2">Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td class="p-2">@v.Marca</td>
+                <td class="p-2">@v.Modelo</td>
+                <td class="p-2">@v.Placa</td>
+                <td class="p-2">@v.Cliente?.Nombre</td>
+                <td class="p-2 space-x-2">
+
+                    <a asp-action="Edit" asp-route-id="@v.Id"
+                       class="bg-yellow-500 text-white px-2 py-1 rounded">
+                        Editar
+                    </a>
+
+                    <a asp-action="Delete" asp-route-id="@v.Id"
+                       class="bg-red-500 text-white px-2 py-1 rounded">
+                        Eliminar
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

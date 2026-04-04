@@ -1,15 +1,42 @@
+@model List<TallerMecanico.Models.Cliente>
+
 <h1 class="text-3xl font-bold mb-4">Clientes</h1>
 
-<div class="bg-white p-5 rounded shadow">
-    <p>Aquí podrás registrar, editar y eliminar clientes.</p>
-</div>
-
-<button onclick="nuevoCliente()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+<a asp-action="Create" class="bg-green-500 text-white px-4 py-2 rounded">
     Nuevo Cliente
-</button>
+</a>
 
-<script>
-function nuevoCliente() {
-    Swal.fire('Aquí irá el formulario de clientes');
-}
-</script>
+<table class="w-full mt-4 bg-white shadow rounded">
+    <thead class="bg-gray-200">
+        <tr>
+            <th class="p-2">Nombre</th>
+            <th class="p-2">Teléfono</th>
+            <th class="p-2">Email</th>
+            <th class="p-2">Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td class="p-2">@c.Nombre</td>
+                <td class="p-2">@c.Telefono</td>
+                <td class="p-2">@c.Email</td>
+                <td class="p-2 space-x-2">
+
+                    <a asp-action="Edit" asp-route-id="@c.Id"
+                       class="bg-yellow-500 text-white px-2 py-1 rounded">
+                        Editar
+                    </a>
+
+                    <a asp-action="Delete" asp-route-id="@c.Id"
+                       class="bg-red-500 text-white px-2 py-1 rounded">
+                        Eliminar
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
