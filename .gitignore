@@ -4,3 +4,25 @@ obj/
 *.log
 *.cache
 .vscode/
+# Ignorar configuraciones de Visual Studio
+.vs/
+*.user
+*.suo
+
+# Ignorar binarios y compilados
+bin/
+obj/
+Debug/
+Release/
+
+# Ignorar archivos de publicación
+publish/
+*.pubxml
+*.pubxml.user
+
+# Ignorar configuraciones locales
+appsettings.Development.json
+
+# Ignorar logs
+*.log
+
