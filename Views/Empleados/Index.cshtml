@@ -1,2 +1,46 @@
-<h1 class="text-2xl font-bold">Empleados</h1>
-<p>Gestión de los Empleados del taller</p>
+@model IEnumerable<TallerMecanico.Models.Empleado>
+@{
+    ViewData["Title"] = "Empleados";
+}
+
+<div class="page-header d-flex justify-content-between align-items-center">
+    <h2 class="mb-0"> Empleados</h2>
+    <a asp-action="Create" class="btn btn-primary">+ Nuevo empleado</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No hay empleados registrados.</div>
+}
+else
+{
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Cargo</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-muted">@item.Id</td>
+                            <td class="fw-semibold">@item.Nombre</td>
+                            <td><span class="badge bg-secondary">@item.Cargo</span></td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary btn-action">Editar</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger btn-action"
+                                   onclick="return confirm('¿Eliminar empleado @item.Nombre?')">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
